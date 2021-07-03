@@ -1,0 +1,19 @@
+version: "3.8"
+services: 
+    gantt-mongodb:
+        image: "mongo"
+    backend:
+        build: ./gantt-server
+        ports:
+            - "3000:3000"
+        depends_on: 
+            - gantt-mongodb
+    frontend: 
+        build: ./gantt-angular
+        ports: 
+            - "4200:4200"
+        stdin_open: true
+        tty: true
+        depends_on: 
+            - backend
+       
